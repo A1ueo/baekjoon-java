@@ -32,7 +32,8 @@ public class Main {
     }
 }
 
-class Pair Main    int first;
+class Pair {
+    int first;
     int second;
 
     Pair(int first, int second) {
