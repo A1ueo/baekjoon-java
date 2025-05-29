@@ -8,48 +8,24 @@ public class Main {
         // 분해합
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String buff = br.readLine();
+        int input = Integer.parseInt(buff);
 
-        int n = Integer.parseInt(buff);
-        int len = buff.length();
-        int figure = 1;
-        // 자릿수, /= 연산에 쓰려면 문자열 길이보다 하나 작게
-        for (int i = 0; i < len - 1; i++) {
-            figure *= 10;
+        int answer = 0;
+        // 생성자는 9 * 문자 개수 보다 작아질 수 없음
+        int start = input - 9 * buff.length();
+        for (int i = start; i < input; i++) {
+            int num = i;
+            int sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num /= 10;
+            }
+            if (i + sum == input) {
+                answer = i;
+                break;
+            }
         }
 
-        // 각 자리당 가능한 수 2^n개
-        int[] arr = new int[len];
-        int num = n;
-
-
-
-        // for(int i = 0; i < len; i++){
-        // int tmp = num / figure;
-        // while((num - tmp) / figure == tmp) {
-        // if((num - tmp) / figure == tmp) {
-        // num -= tmp;
-        // arr[i] = tmp;
-        // num %= figure;
-        // figure /= 10;
-        // } else {
-        // tmp--;
-        // }
-        // }
-        // }
-        // for(int i : arr)
-        // System.out.print(i);
-
-
-        // 문자열로
-        // String[] strArr = buff.split("");
-        // int num = Integer.parseInt(buff);
-
-        // int[] numArr = new int[strArr.length];
-        // for(int i = 0; i < strArr.length; i++){
-        // numArr[i] = Integer.parseInt(strArr[i]);
-        // }
-
-
-
+        System.out.println(answer);
     }
 }
