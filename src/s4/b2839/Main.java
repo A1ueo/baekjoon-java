@@ -1,30 +1,27 @@
 package s4.b2839;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int remainder = n;
-        int count = 0;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
-        // remainder가 0일때?
-        for (int i = 0; i <= n / 5.0; i++) {
-            remainder -= 5;
-            if (remainder % 3 == 0) {
-                count = (n - remainder) / 5 + remainder / 3;
-            }
+        int five = n / 5, three = 0;
+        int remainder = n % 5;
+
+        while (remainder % 3 != 0 && !(remainder > n)) {
+            remainder += 5;
+            five--;
         }
 
-        if (count == 0) {
-            if (n % 3 == 0) {
-                count = n / 3;
-            } else {
-                count = -1;
-            }
+        if (remainder > n || remainder % 3 != 0) {
+            System.out.println(-1);
+        } else {
+            three = remainder / 3;
+            System.out.println(five + three);
         }
 
-        System.out.println(count);
     }
 }
