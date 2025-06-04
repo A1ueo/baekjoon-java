@@ -6,5 +6,6 @@
     "java.project.referencedLibraries": [],
     "[java]": {
         "editor.insertSpaces": true
-    }
+    },
+    "java.dependency.packagePresentation": "hierarchical"
 }
