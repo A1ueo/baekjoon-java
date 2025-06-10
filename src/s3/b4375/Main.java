@@ -14,7 +14,7 @@ public class Main {
             inputList.add(n);
         }
         br.close();
-        inputList.sort(null);
+        // inputList.sort(null);
 
         long comparison = 1;
         int idx = 0;
