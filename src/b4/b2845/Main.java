@@ -1,0 +1,21 @@
+package b4.b2845;
+
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) throws Exception {
+	    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] buff = br.readLine().split(" ");
+        int l = Integer.parseInt(buff[0]);
+        int p = Integer.parseInt(buff[1]);
+        int predict = l * p;
+
+        buff = br.readLine().split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            sb.append(Integer.parseInt(buff[i]) - predict).append(' ');
+        }
+
+        System.out.println(sb);
+	}
+}

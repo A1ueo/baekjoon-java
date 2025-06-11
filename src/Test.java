@@ -9,5 +9,6 @@ public class Test {
         deq.offer(2);
         deq.offer(3);
         System.out.println(deq.getFirst());
+
     }
 }
