@@ -1,25 +1,33 @@
 package s4.b2164;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
+import java.io.*;
+import java.util.*;
+
+/* 카드2
+ * 첫째 줄에 정수 N(1 ≤ N ≤ 500,000)이 주어진다.
+ */
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+
+    public static void main (String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int idx = 1;
-        int answer = 0;
-        if (n == 1) {
-            System.out.println(1);
-        } else {
-            for (int i = 1; i < n; i++) {
-                answer += 2;
-                if (answer == Math.pow(2, idx) && i < n - 1) {
-                    answer = 0;
-                    idx++;
-                }
-            }
-            System.out.println(answer);
+
+        Queue<Integer> que = new LinkedList<>();
+        for (int i = 1; i <= n; i++) {
+            que.offer(i);
         }
+
+        int count = 0;
+        while (que.size() > 1) {
+            if (count % 2 == 0) {
+                que.poll();
+            } else {
+                que.offer(que.poll());
+            }
+            count++;
+        }
+
+        System.out.println(que.poll());
     }
 }

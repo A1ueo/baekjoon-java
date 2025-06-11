@@ -8,14 +8,35 @@ import java.util.*;
  * 각 테스트 데이터의 첫째 줄에는 괄호 문자열이 한 줄에 주어진다. 
  * 하나의 괄호 문자열의 길이는 2 이상 50 이하이다. 
  */
-    
-public class Main {
-    public static void main(String[] args) throws  Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	int t = new Integer.parseInt(br.readLine);
-	for (int i = 0; i < t; i++) {
-		String buff = br.readLine;
-	}
 
-    }
+public class Main {
+	public static void main(String[] args) throws  Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		int t = Integer.parseInt(br.readLine());
+		boolean[] flags = new boolean[t];
+		for (int i = 0; i < t; i++) {
+			String buff = br.readLine();
+			Deque<Boolean> stk = new ArrayDeque<>();
+			boolean flag = true;
+			for (int j = 0; j < buff.length(); j++) {
+				if (buff.charAt(j) == '(') stk.push(true);
+				else if (buff.charAt(j) == ')' && !stk.isEmpty()) stk.pop();
+				else {
+					flag = false;
+					break;
+				}
+			}
+			if (!stk.isEmpty()) flag = false;
+			flags[i] = flag;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (boolean flag : flags) {
+			if (flag == true) sb.append("YES").append('\n');
+			else sb.append("NO").append('\n');
+		}
+
+		System.out.println(sb);
+	}
 }
