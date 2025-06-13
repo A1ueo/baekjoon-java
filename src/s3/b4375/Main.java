@@ -5,28 +5,24 @@ import java.util.*;
 
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args)throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<Integer> inputList = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         String buff;
         while ((buff = br.readLine()) != null && !buff.equals("")) {
             int n = Integer.parseInt(buff);
-            inputList.add(n);
+            list.add(n);
         }
-        br.close();
-        // inputList.sort(null);
 
-        long comparison = 1;
-        int idx = 0;
         StringBuilder sb = new StringBuilder();
-        while (idx < inputList.size()) {
-            if (comparison % inputList.get(idx) == 0) {
-                sb.append((int) Math.log10(comparison) + 1).append('\n');
-                idx++;
-            } else {
-                comparison *= 10;
-                comparison++;
+        for (int i = 0; i < list.size(); i++) {
+            int comparison = 1, len = 1;
+            while (comparison % list.get(i) != 0) {
+                comparison = (comparison * 10 + 1) % list.get(i);
+                len++;
             }
+
+            sb.append(len).append('\n');
         }
         
         System.out.println(sb);

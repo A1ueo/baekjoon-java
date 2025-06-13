@@ -6,12 +6,17 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        char[][] puzzle = new char[4][4];
+        String buff;
+        int count = 0;
         for(int i = 0; i < 4; i++) {
-            puzzle[i] = br.readLine().toCharArray();
+            buff = br.readLine();
+            for (int j = 0; j < 4; j++) {
+                if (buff.charAt(j) != '.' && buff.charAt(j) < 'A' + i * 4 + j){
+                    count += ('A' + i * 4 + j) - buff.charAt(j);
+                }
+            }
         }
 
-        for
-
+        System.out.println(count);
     }
 }

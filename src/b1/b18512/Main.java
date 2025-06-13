@@ -1,35 +1,23 @@
 package b1.b18512;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] buff = br.readLine().split(" ");
-        int[] arr = Arrays.stream(buff).mapToInt(Integer::parseInt).toArray();
+        String buff = br.readLine();
+        int[] arr = Arrays.stream(buff.split(" ")).mapToInt(Integer::parseInt).toArray();
 
-        int aPos = 2, aInc = 0, bPos = 3, bInc = 1;
-        if (arr[2] < arr[3]) {
-            aPos = 3;
-            aInc = 1;
-            bPos = 2;
-            bInc = 0;
+        int aPosition = arr[3], bPosition =arr[4],
+        aIncrease = arr[0], bIncrease = arr[1];
+
+        if (aPosition > bPosition) {
+            bPosition = arr[3];
+            aPosition = arr[4];
+            bIncrease = arr[0];
+            aIncrease = arr[1];
         }
 
-        // TODO: 안 곂치는 조건?
-        if ((arr[aInc] % arr[bInc] == 0 || arr[bInc] % arr[aInc] == 0) && arr[aPos] - arr[bPos] < arr[aInc]) {
-            System.out.println(-1);
-            return ;
-        }
-
-        while (true) {
-            int result = (arr[aPos] - arr[bPos]) % arr[bInc];
-            if (result == 0) break;
-
-            arr[aPos] += arr[aInc];
-        }
-
-        System.out.println(arr[aPos]);
     }
 }
