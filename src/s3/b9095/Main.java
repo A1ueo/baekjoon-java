@@ -10,39 +10,23 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[t];
+        int[] arr = new int[11];
+        arr[0] = 1;
+        arr[1] = 2;
+        arr[2] = 4;
+
+        int idx = 3;
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < t; i++) {
-            int tmp = Integer.parseInt(br.readLine());
-            int count = 1;
-            if (tmp % 6 == 0) {
-                count *= divByN(6, tmp);
+            int n = Integer.parseInt(br.readLine());
+            for (int j = idx; j < n; j++) {
+                if (arr[j] != 0) continue;
+                arr[j] = arr[j - 1] + arr[j - 2] + arr[j - 3];
             }
-            if (tmp % 2 == 0) {
-                count *= divByN(2, tmp);
-            }
-            if (tmp % 3 == 0) {
-                count *= divByN(3, tmp);
-            }
-            arr[i] = tmp + count;
-        }
-        
-        for (int num : arr)
-            System.out.println(num);
-    }
-
-    static int divByN (int n, int num) {
-        int count = 1;
-        if (num % n == 0) {
-            count = 0;
-            while (num % n == 0) {
-                num /= n;
-                count++;
-            }
+            idx = n;
+            sb.append(arr[n - 1]).append('\n');
         }
 
-        if (num % 2 == 0) count *= divByN(2, num);
-        if (num % 3 == 0) count *= divByN(3, num);
-        
-        return count;
+        System.out.println(sb);
     }
 }
