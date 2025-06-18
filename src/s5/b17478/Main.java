@@ -16,7 +16,6 @@ public class Main {
     }
 
     static StringBuilder method(int num1, int num2) {
-        String str = "\"재귀함수가 뭔가요?\"\n";
         String[] arr = {
             "",
             "",
@@ -29,6 +28,7 @@ public class Main {
             "",
             "\"재귀함수는 자기 자신을 호출하는 함수라네\"\n"
         };
+        String str = "\"재귀함수가 뭔가요?\"\n";
         arr[1] = str;
 
         StringBuilder bar = new StringBuilder();
