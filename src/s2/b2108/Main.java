@@ -32,12 +32,11 @@ public class Main {
             count++;
         }
 
-
         StringBuilder sb = new StringBuilder();
         int avg = (int) Math.round((double) sum / n);
         sb.append(avg).append('\n');
         sb.append(center).append('\n');
-        sb.append(minRateKey).append('\n');
+        // sb.append(minRateKey).append('\n');
         sb.append(max - min);
 
         System.out.println(sb);
