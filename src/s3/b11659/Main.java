@@ -36,12 +36,6 @@ public class Main {
 					}
 				}
 	
-				if (preEnd > end) {
-					for (int j = end; j < preEnd; j++) {
-						sum -= arr[j];
-					}
-				}
-	
 				if (start < preStart) {
 					for (int j = start; j < preStart; j++) {
 						sum += arr[j];
@@ -51,6 +45,12 @@ public class Main {
 				if (preEnd < end) {
 					for (int j = preEnd; j < end; j++) {
 						sum += arr[j];
+					}
+				}
+	
+				if (end < preEnd) {
+					for (int j = end; j < preEnd; j++) {
+						sum -= arr[j];
 					}
 				}
 			}
