@@ -36,7 +36,21 @@ public class Main {
 				}
 			} else {
 				if (idx[0] < preIdx[0]) {
+					if (idx[1] < preIdx[1]) {
+						for (int y = idx[1]; y < preIdx[1]; y++) {
+							for (int x = idx[0]; x < preIdx[0]; x++) {
+								
+							}
+						}
+					} else if (idx[1] < preIdx[1]) {
+						
+					}
 
+					if (idx[3] < preIdx[3]) {
+
+					} else if (idx[3] < preIdx[3]) {
+						
+					}
 				} else if (idx[0] > preIdx[0]) {
 
 				}
