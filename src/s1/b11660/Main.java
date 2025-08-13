@@ -21,11 +21,12 @@ public class Main {
 
 		int[] ans = new int[m];
 		int[] preIdx = null;
+		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < m; i++) {
 			buff = br.readLine().split(" ");
 			int[] idx = new int[4];
 			for (int j = 0; j < 4; j++) {
-				idx[j] = j % 2 == 0 ? Integer.parseInt(buff[j]) - 1 : Integer.parseInt(buff[j]);
+				idx[j] = j > 1 ? Integer.parseInt(buff[j]) : Integer.parseInt(buff[j]) - 1;
 			}
 
 			if (i == 0) {
@@ -35,45 +36,19 @@ public class Main {
 					}
 				}
 			} else {
-				if (idx[0] < preIdx[0]) {
-					if (idx[1] < preIdx[1]) {
-						for (int y = idx[1]; y < preIdx[1]; y++) {
-							for (int x = idx[0]; x < preIdx[0]; x++) {
-								
-							}
-						}
-					} else if (idx[1] < preIdx[1]) {
-						
-					}
-
-					if (idx[3] < preIdx[3]) {
-
-					} else if (idx[3] < preIdx[3]) {
-						
-					}
-				} else if (idx[0] > preIdx[0]) {
-
-				}
-
-				if (idx[2] < preIdx[2]) {
-
-				} else if (idx[2] > preIdx[2]) {
-
-				}
-
 			}
 
-			preIdx = idx;
-		}
-
+		System.out.println(sb);
 	}
 
-	public static int calcY(int[] idx, int[] preIdx) {
+	static int calcY(int[] idx, int[] preIdx) {
 		int sum = 0;
 
-		if (idx[1] < preIdx[1])
+		if (idx[1] < preIdx[1]) {
+
+		}
 			
 
-		return 
+		return 0;
 	}
 }
