@@ -1,11 +1,14 @@
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
 
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "cp949"));
         String buff = br.readLine();
 
         System.out.println(buff);
