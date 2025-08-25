@@ -8,75 +8,68 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		// int n = Integer.parseInt(br.readLine());
+		int n = Integer.parseInt(br.readLine());
 
-		
-		String[] tmp = br.readLine().split(" ");
-		
-		Node a = new Node(tmp[0]);
-		Node b = new Node(tmp[1]);
+		List<String> pre = new LinkedList<>();
+		List<String> in = new LinkedList<>();
+		List<String> post = new LinkedList<>();
+		for (int i = 0; i < n; i++) {
+			String[] tmp = br.readLine().split(" ");
 
-		System.out.println(a.equals(b));
+			if (i == 0) {
+				pre.add(tmp[0]);
+				in.add(tmp[0]);
+				post.add(tmp[0]);
+			}
 
+			// 전위
+			int pointer;
+			if ((pointer = pre.indexOf(tmp[0])) != -1) {
+				if (!".".equals(tmp[1])) pre.add(pointer + 1, tmp[1]);
+				if (!".".equals(tmp[2])) {
+					if (!".".equals(tmp[1])){
+						pre.add(pointer + 2, tmp[2]);
+					} else {
+						pre.add(pointer + 1, tmp[2]);
+					}
+				}
+			}
 
-		// for (int i = 0; i < n; i++) {
-		// 	String[] tmp = br.readLine().split(" ");
+			// 중위
+			if ((pointer = in.indexOf(tmp[0])) != -1) {
+				if (!".".equals(tmp[1])) {
+					in.add(pointer, tmp[1]);
+					pointer++;
+				}
+				if (!".".equals(tmp[2])) {
+					in.add(pointer + 1, tmp[2]);
+				}
+			}
 
-		// 	if (i == 0) root.value = tmp[0];
-		// 	if (!".".equals(tmp[1])) root.left = new Node(tmp[1]);
-		// 	if (!".".equals(tmp[2])) root.right = new Node(tmp[2]);
-		// }
-
-		// StringBuilder pre = new StringBuilder();
-		// StringBuilder in = new StringBuilder();
-		// StringBuilder post = new StringBuilder();
-		// for (int i = 0; i < n; i++) {
-
-		// }
-	}
-}
-
-class Node {
-	String value;
-	Node left;
-	Node right;
-
-    public Node() {
-    }
-
-    public Node(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(value);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-		if (this == obj) return true;
-
-		if (obj instanceof Node) {
-			Node other = (Node) obj;
-			return Objects.equals(this.value, other.value);
+			// 후위
+			if ((pointer = post.indexOf(tmp[0])) != -1) {
+				if (!".".equals(tmp[1])) {
+					post.add(pointer, tmp[1]);
+					pointer++;
+				}
+				if (!".".equals(tmp[2])) {
+					post.add(pointer, tmp[2]);
+					pointer++;
+				}
+			}
 		}
-		return false;
-    }
-}
 
-class tree {
-
-	Node root;
-	Node curr = root;
-
-	void add(String a, String b, String c) {
-		if (root == null){
-			root = new Node(a);
-			root.left = new Node(b);
-			root.right = new Node(c);
-		} else {
-				
+		StringBuilder preSb = new StringBuilder();
+		StringBuilder inSb = new StringBuilder();
+		StringBuilder postSb = new StringBuilder();
+		for (int i = 0; i < n; i++) {
+			preSb.append(pre.get(i));
+			inSb.append(in.get(i));
+			postSb.append(post.get(i));
 		}
+
+		System.out.println(preSb);
+		System.out.println(inSb);
+		System.out.println(postSb);
 	}
 }
