@@ -1,43 +1,44 @@
 package s2.b11725;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
+
+	static Map<String, Set<String>> map;
+	static Map<String, String> result;
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int n = Integer.parseInt(br.readLine());
+
+		map = new HashMap<>(n);
+		for (int i = 1; i <= n; i++) map.put(String.valueOf(i), new HashSet<>());
 		
-		Map<String, List<String>> map = new HashMap<>();
 		for (int i = 0; i < n - 1; i++) {
 			String[] tmp = br.readLine().split(" ");
-			if (!map.containsKey(tmp[0])) {
-				map.put(tmp[0], new LinkedList<String>());
-			}
-			if (!map.containsKey(tmp[1])) {
-				map.put(tmp[1], new LinkedList<String>());
-			}
-
+			
 			map.get(tmp[0]).add(tmp[1]);
 			map.get(tmp[1]).add(tmp[0]);
 		}
 		
-		System.out.println(map);
-		Map<String, String> result = new HashMap<>();
-		method(map, "1", result);
-		System.out.println(result);
+		result = new HashMap<>(n);
+		method("1");
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = 2; i <= n; i++) {
+			sb.append(result.get(String.valueOf(i)) + "\n");
+		}
+
+		System.out.println(sb);
 	}
 
-	static void method(Map<String, List<String>> map, String parent, 
-			Map<String, String> result) {
-		for (String s : map.get(parent)) {
-			if (s != null && s.equals(parent)) result.put(s, parent);
-			else method(map, s, result);
+	static void method(String num) {
+		for (String s : map.get(num)) {
+			result.put(s, num);
+			map.get(s).remove(num);
+			method(s);
 		}
 	}
 }
