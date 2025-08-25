@@ -76,14 +76,14 @@ class Tree {
 
 	StringBuilder postOrder() {
 		sb = new StringBuilder();
-		postOrder(root, sb);
+		postOrder(root);
 		return sb;
 	}
 
-	void postOrder(Node curr, StringBuilder sb) {
-		if (curr.left != null) postOrder(curr.left, sb);
+	void postOrder(Node curr) {
+		if (curr.left != null) postOrder(curr.left);
 		
-		if (curr.right != null) postOrder(curr.right, sb);
+		if (curr.right != null) postOrder(curr.right);
 
 		sb.append(curr.value + "\n");
 	}
