@@ -1,12 +1,7 @@
 package s3.b2606;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 
@@ -17,7 +12,6 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int n = Integer.parseInt(br.readLine());
-
 		int m = Integer.parseInt(br.readLine());
 
 		map = new HashMap<>();
@@ -35,15 +29,14 @@ public class Main {
 		set.add("1");
 		method("1");
 
-		System.out.println(set.size());
+		System.out.println(set.size() - 1);
 	}
 
 	static void method(String curr) {
-		var it = map.get(curr).iterator();
-		while (it.hasNext()) {
-			String s = it.next();
+		for (String s : map.get(curr)) {
 			set.add(s);
-			it.remove();
+			for (String c : set)
+				map.get(s).remove(c);
 			method(s);
 		}
 	}
