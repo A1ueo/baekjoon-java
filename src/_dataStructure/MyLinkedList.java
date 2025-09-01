@@ -146,20 +146,28 @@ public class MyLinkedList<E> implements MyList<E> {
 			prev = curr;
 			curr = curr.next;
 		}
+		Node tmp = curr;
+		prev.next = curr.next;
+		size--;
 
-		prev.next = 
-
-		return null;
+		return tmp.value;
 	}
 
 	@Override
 	public E set(int index, E element) {
-		return null;
+		Node curr = root;
+		for (int i = 0; i < index; i++) {
+			curr = curr.next;
+		}
+		E tmp = curr.value;
+		curr.value = element;
+
+		return tmp;
 	}
 
 	@Override
 	public int size() {
-		return 0;
+		return size;
 	}
 
 }
