@@ -1,3 +1,4 @@
+package _dataStructure;
 
 public interface MyList<E> {
 
